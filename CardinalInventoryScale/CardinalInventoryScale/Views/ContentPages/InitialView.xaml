@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<local:InitialViewBase xmlns="http://xamarin.com/schemas/2014/forms" 
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:local="clr-namespace:CardinalInventoryScale.Views.ContentPages"
+                       x:Class="CardinalInventoryScale.Views.ContentPages.InitialView">
+    <StackLayout>
+        <Label Text="HX711" />
+        <Label Text="{Binding WeightValue}" />
+    </StackLayout>
+</local:InitialViewBase>

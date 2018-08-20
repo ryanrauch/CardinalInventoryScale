@@ -1,3 +1,5 @@
+using Autofac;
+using CardinalInventoryScale.Views.ContentPages;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -7,11 +9,13 @@ namespace CardinalInventoryScale
 {
 	public partial class App : Application
 	{
-		public App ()
+        public static IContainer Container { get; set; }
+
+        public App ()
 		{
 			InitializeComponent();
-
-			MainPage = new MainPage();
+            Container = AutoFacContainerBuilder.CreateContainer();
+            MainPage = new InitialView();
 		}
 
 		protected override void OnStart ()
