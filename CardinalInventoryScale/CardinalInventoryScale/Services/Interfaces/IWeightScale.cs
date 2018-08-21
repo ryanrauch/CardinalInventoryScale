@@ -11,7 +11,7 @@ namespace CardinalInventoryScale.Services.Interfaces
         void PowerDown();
         void PowerOn();
         Int32 Read();
-        //UInt64 ReadOtherWay();
+        string GetDeviceName();
     }
 
     public enum InputAndGainOption : int

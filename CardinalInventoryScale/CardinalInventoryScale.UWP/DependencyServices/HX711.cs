@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
+using Windows.Networking;
+using Windows.Networking.Connectivity;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(HX711))]
@@ -88,6 +90,13 @@ namespace CardinalInventoryScale.UWP.DependencyServices
         }
 
         #endregion
+
+        public string GetDeviceName()
+        {
+            var hostNames = NetworkInformation.GetHostNames();
+            var hostName = hostNames.FirstOrDefault(name => name.Type == HostNameType.DomainName)?.DisplayName ?? string.Empty;
+            return hostName;
+        }
 
         #region input selection/ gain selection
 
