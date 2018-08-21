@@ -28,7 +28,7 @@ namespace CardinalInventoryScale
         {
             var containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterType<InitialViewModel>().SingleInstance();
-            //containerBuilder.RegisterType<LoginViewModel>().SingleInstance();
+            containerBuilder.RegisterType<RealTimeViewModel>().SingleInstance();
             //containerBuilder.RegisterType<InventoryViewModel>().SingleInstance();
             //containerBuilder.RegisterType<InventoryCompletedViewModel>().SingleInstance();
             //containerBuilder.RegisterType<SmartWatchViewModel>().SingleInstance();
@@ -42,6 +42,7 @@ namespace CardinalInventoryScale
             containerBuilder.RegisterType<SinglePageNavigationService>().As<INavigationService>().SingleInstance();
 
             containerBuilder.RegisterInstance(DependencyService.Get<IWeightScale>()).AsImplementedInterfaces().SingleInstance();
+            containerBuilder.RegisterInstance(DependencyService.Get<IWeightScaleCommunicationService>()).AsImplementedInterfaces().SingleInstance();
 
             return containerBuilder.Build();
         }
