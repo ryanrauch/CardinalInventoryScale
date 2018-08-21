@@ -1,6 +1,7 @@
 ﻿using CardinalInventoryScale.Services.Interfaces;
 using CardinalInventoryScale.UWP.DependencyServices;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,8 +30,8 @@ namespace CardinalInventoryScale.UWP.DependencyServices
             GpioPin dataPin;
             GpioOpenStatus status;
             if (controller != null
-                && controller.TryOpenPin(5, GpioSharingMode.Exclusive, out clockPin, out status)
-                && controller.TryOpenPin(6, GpioSharingMode.Exclusive, out dataPin, out status))
+                && controller.TryOpenPin(6, GpioSharingMode.Exclusive, out clockPin, out status)
+                && controller.TryOpenPin(5, GpioSharingMode.Exclusive, out dataPin, out status))
             {
                 PowerDownAndSerialClockInput = clockPin;
                 PowerDownAndSerialClockInput.SetDriveMode(GpioPinDriveMode.Output);
@@ -64,21 +65,26 @@ namespace CardinalInventoryScale.UWP.DependencyServices
         //output pin.Each PD_SCK pulse shifts out one bit,
         //starting with the MSB bit first, until all 24 bits are
         //shifted out.
-        public int Read()
+        public Int32 Read()
         {
+            Int32 ret = 0;
             while (!IsReady())
             {
-
+                System.Threading.Thread.Sleep(10);
             }
-            string binaryData = "";
-            for (int pulses = 0; pulses < 25 + (int)InputAndGainSelection; pulses++)
+            string binaryData = string.Empty;
+            for (int pulses = 0; pulses < 24 + (int)InputAndGainSelection; pulses++)
             {
                 PowerDownAndSerialClockInput.Write(GpioPinValue.High);
                 PowerDownAndSerialClockInput.Write(GpioPinValue.Low);
-                if (pulses < 25)
+                if (pulses < 24)
+                {
                     binaryData += (int)SerialDataOutput.Read();
+                }
             }
-            return Convert.ToInt32(binaryData, 2);
+            binaryData = binaryData.PadLeft(32, binaryData[0]);
+            ret = Convert.ToInt32(binaryData, 2);
+            return ret;
         }
 
         #endregion
@@ -119,7 +125,7 @@ namespace CardinalInventoryScale.UWP.DependencyServices
         public void PowerOn()
         {
             PowerDownAndSerialClockInput.Write(GpioPinValue.Low);
-            _InputAndGainSelection = InputAndGainOption.A128;
+            InputAndGainSelection = InputAndGainOption.A128;
         }
         //After a reset or power-down event, input
         //selection is default to Channel A with a gain of 128. 

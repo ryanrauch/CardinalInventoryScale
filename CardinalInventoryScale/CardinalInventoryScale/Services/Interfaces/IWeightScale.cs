@@ -10,11 +10,14 @@ namespace CardinalInventoryScale.Services.Interfaces
 
         void PowerDown();
         void PowerOn();
-        int Read();
+        Int32 Read();
+        //UInt64 ReadOtherWay();
     }
 
     public enum InputAndGainOption : int
     {
-        A128 = 1, B32 = 2, A64 = 3
+        A128 = 1,
+        B32 = 2,
+        A64 = 3
     }
 }

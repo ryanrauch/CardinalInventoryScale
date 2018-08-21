@@ -4,7 +4,13 @@
                        xmlns:local="clr-namespace:CardinalInventoryScale.Views.ContentPages"
                        x:Class="CardinalInventoryScale.Views.ContentPages.InitialView">
     <StackLayout>
-        <Label Text="HX711" />
-        <Label Text="{Binding WeightValue}" />
+        <Label Text="WeightValueRaw" />
+        <Label Text="{Binding WeightValueRaw}" />
+        <Label Text="WeightValueTare" />
+        <Label Text="{Binding WeightValueTare}" />
+        <Label Text="WeightValueAdjusted" />
+        <Label Text="{Binding WeightValueAdjusted}" />
+        <Label Text="138.0g Reference" />
+        <Label Text="{Binding WeightValueReference}" />
     </StackLayout>
 </local:InitialViewBase>
