@@ -4,6 +4,8 @@
                        xmlns:local="clr-namespace:CardinalInventoryScale.Views.ContentPages"
                        x:Class="CardinalInventoryScale.Views.ContentPages.InitialView">
     <StackLayout>
+        <Label Text="DeviceSettingsInitialized" />
+        <Label Text="{Binding DeviceSettingsInitialized}" />
         <Label Text="DeviceName" />
         <Label Text="{Binding DeviceName}" />
         <Label Text="WeightValueRaw" />
@@ -12,7 +14,7 @@
         <Label Text="{Binding WeightValueTare}" />
         <Label Text="WeightValueAfterTare" />
         <Label Text="{Binding WeightValueAfterTare}" />
-        <Label Text="CALIBRATION_CONSTANT" />
+        <Label Text="CalibrationConstant" />
         <Label Text="{Binding CalibrationConstant}" />
         <Label Text="WeightValueCalibrated" />
         <Label Text="{Binding WeightValueCalibrated}" />

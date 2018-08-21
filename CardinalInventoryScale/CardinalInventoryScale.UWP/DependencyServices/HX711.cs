@@ -14,6 +14,8 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(HX711))]
 namespace CardinalInventoryScale.UWP.DependencyServices
 {
+    //https--://cdn.sparkfun.com/datasheets/Sensors/ForceFlex/hx711_english.pdf
+
     //24-Bit Analog-to-Digital Converter (ADC) for Weigh Scales
     public class HX711 : IWeightScale
     {
